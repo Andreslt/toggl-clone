@@ -5,15 +5,27 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server/index.js"
+    "start": "nodemon app/server/index.js"
   },
   "author": "Andrés Lastra",
   "license": "ISC",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.16.1",
+    "browser-sync": "^2.18.8",
+    "del": "^2.2.2",
     "express": "^4.14.1",
+    "express-session": "^1.15.1",
+    "gulp": "^3.9.1",
     "method-override": "^2.3.7",
     "mongoose": "^4.8.4",
-    "morgan": "^1.8.1"
+    "morgan": "^1.8.1",
+    "passport": "^0.3.2",
+    "passport-twitter": "^1.0.4",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "gulp-flatten": "^0.3.1",
+    "gulp-load-plugins": "^1.5.0"
   }
 }
