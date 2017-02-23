@@ -5,6 +5,7 @@ var session = require('express-session');
 var express = require('express');
 var User = require('../db/schemas').user;
 var path = require('path');
+var flash    = require('connect-flash');
 
 module.exports = (app)=>{
     app.use(express.static(process.cwd()+'/app/client/public'));
@@ -12,6 +13,7 @@ module.exports = (app)=>{
     app.use(bodyParser.urlencoded({'extended':'true'}));
     app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
     app.use(methodOverride());
+    app.use(flash());
     app.use(session({
         secret: 'togglClone',
         saveUninitialized: true,
@@ -27,7 +29,7 @@ var sessionMidleware = (req, res, next) => {
     User.findOne({ _id: req.session.passport.user }, function(err, user) {
       if (user) {
         req.user = user;
-        req.session.user = user;  //refresh the session value
+        req.session.user = user;
         res.locals.user = user;
       }
       next();

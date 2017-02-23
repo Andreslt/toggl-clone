@@ -1,0 +1,19 @@
+<div>Lasts tasks for <%= vm.user=></div>
+
+<table>
+    <tr>
+        <td>Title</td>
+        <td>Started At</td>
+        <td>Completed At</td>
+        <td>Duration</td>
+        <td>Project</td>
+    </tr>
+    <tr data-ng-repeat="t in tasks">
+        <td><%=t.title=></td>
+        <td><%=t.startTime=></td>
+        <td><%=t.endTime=></td>
+        <td><%=t.duration=></td>
+        <td><%=t.project_id=></td>        
+    </tr>
+</table>
+<%= vm.tasks=>

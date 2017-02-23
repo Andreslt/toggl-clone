@@ -10,7 +10,7 @@ gulp.task('default', ()=>{
         .pipe()
 });
 
-gulp.task('default', ['bower_css', 'bower_js', 'bower_angular'], () => {
+gulp.task('default', ['bower_css', 'bower_js', 'bower_fonts', 'bower_angular'], () => {
     // browserSync.init({
     //     server: gulp_config.public_html
     // });
@@ -30,6 +30,14 @@ gulp.task('bower_js', ()=> {
         .pipe($.flatten())
         .pipe(gulp.dest(gulp_config.public_js))
 });
+
+// bower_fonts files
+gulp.task('bower_fonts', ()=> {
+    return gulp.src(gulp_config.bower_fonts)
+        .pipe($.flatten())
+        .pipe(gulp.dest(gulp_config.public))
+});
+
 // bower_angular
 gulp.task('bower_angular', ()=>{
     return gulp.src(gulp_config.bower_angular)

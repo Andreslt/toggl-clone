@@ -10,6 +10,11 @@ var taskSchema = new mongoose.Schema({
         required: true
     },
     endTime: Date,
+    duration: Number,
+    project_id:{
+        type: ObjectId,
+        ref: "Project",
+    },
     completed: {
         type: Boolean,
         default: false,

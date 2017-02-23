@@ -1,12 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var mongoose = require('mongoose');
 var passport = require('passport');
 
 //Database
-var user = require('../db/schemas').user;
-var task = require('../db/schemas').task;
-var project = require('../db/schemas').project;
+var Task = require('../db/schemas').task;
+var Project = require('../db/schemas').project;
 
 //dashboard & Login >>
     router.get('/', isLoggedIn, (req, res) => {
@@ -14,8 +12,9 @@ var project = require('../db/schemas').project;
     });
 
     router.get('/dashboard', isLoggedIn, (req, res) => {
-        console.log('dashboard reached!');
-        res.sendfile('app/client/public/index.html');
+        console.log('user: '+req.user);
+
+        res.sendfile('app/client/public/html/index.html');
     });
 
     router.get('/login', (req, res) => {
@@ -29,44 +28,40 @@ var project = require('../db/schemas').project;
     });
 //<<
 
-//Users >>
-    router.post('/user/new', (req, res) => {
-
-    });
-    router.delete('/user/:id', (req, res) => {
-
-    });
-//<<
-
 //Tasks >>
-    router.get('/task', (req, res) => {
+    router.get('/api/tasks', isLoggedIn, (req, res) => {
+        Task.find({}, (err, tasks)=>{
+            res.json(tasks);
+        });        
+    });
+
+    router.post('/api/tasks/new', isLoggedIn,(req, res) => {
+        var task = new Task();
+            task.title = req.title;
+            task.save();            
+        res.sendStatus(200);
+    });
+
+    router.delete('/api/tasks/:id', isLoggedIn, (req, res) => {
 
     });
 
-    router.post('/task/new', (req, res) => {
-
-    });
-
-    router.delete('/task/:id', (req, res) => {
-
-    });
-
-    router.put('/task/:id', (req, res) => {
+    router.put('/api/tasks/:id', isLoggedIn, (req, res) => {
 
     });
 //<<
 
 //Projects >>
-    router.get('/project', (req, res) => {
+    router.get('/project', isLoggedIn, (req, res) => {
 
     });
-    router.post('/project/new', (req, res) => {
+    router.post('/project/new', isLoggedIn, (req, res) => {
 
     });
-    router.delete('/project/:id', (req, res) => {
+    router.delete('/project/:id', isLoggedIn, (req, res) => {
 
     });
-    router.put('/project/:id', (req, res) => {
+    router.put('/project/:id', isLoggedIn, (req, res) => {
 
     });
 //<<
@@ -83,12 +78,10 @@ var project = require('../db/schemas').project;
 //<<
 
 function isLoggedIn(req, res, next) {
-    console.log('Log Function');
     if (req.isAuthenticated()){
-        console.log('Logged In');
         return next();
     }
-    console.log('Not Logged Yet');
+    console.log('Request failed. You should be logged in.');
     res.redirect('/login');
 }
 
