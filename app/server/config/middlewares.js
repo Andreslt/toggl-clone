@@ -11,7 +11,7 @@ module.exports = (app)=>{
     app.use(express.static(process.cwd()+'/app/client/public'));
     app.use(morgan('dev'));
     app.use(bodyParser.urlencoded({'extended':'true'}));
-    app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
+    app.use(bodyParser.json());
     app.use(methodOverride());
     app.use(flash());
     app.use(session({

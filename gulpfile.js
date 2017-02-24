@@ -11,9 +11,10 @@ gulp.task('default', ()=>{
 });
 
 gulp.task('default', ['bower_css', 'bower_js', 'bower_fonts', 'bower_angular'], () => {
-    // browserSync.init({
-    //     server: gulp_config.public_html
-    // });
+    browserSync.init(null,{
+        // server: gulp_config.public_html
+        proxy: "http://localhost:9000", // port of node server
+    });
     console.log('done.')
 });
 
@@ -35,7 +36,7 @@ gulp.task('bower_js', ()=> {
 gulp.task('bower_fonts', ()=> {
     return gulp.src(gulp_config.bower_fonts)
         .pipe($.flatten())
-        .pipe(gulp.dest(gulp_config.public))
+        .pipe(gulp.dest(gulp_config.public_fonts))
 });
 
 // bower_angular

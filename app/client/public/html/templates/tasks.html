@@ -1,19 +1,53 @@
-<div>Lasts tasks for <%= vm.user=></div>
-
-<table>
-    <tr>
-        <td>Title</td>
-        <td>Started At</td>
-        <td>Completed At</td>
-        <td>Duration</td>
-        <td>Project</td>
-    </tr>
-    <tr data-ng-repeat="t in tasks">
-        <td><%=t.title=></td>
-        <td><%=t.startTime=></td>
-        <td><%=t.endTime=></td>
-        <td><%=t.duration=></td>
-        <td><%=t.project_id=></td>        
-    </tr>
-</table>
-<%= vm.tasks=>
+<div class="container-fluid">
+    <div class="row">
+        <!--<div class="jumbotron" align="center" >
+            <h1>Welcome <%= vm.user.twitter.displayName=></h1>
+        </div>     -->
+        <div class="col-lg-12">
+            <br>
+            <h1>Welcome <%= vm.user.twitter.displayName=></h1>
+        </div><br>
+    </div>
+    <div class="row">
+        <div class="col-lg-8">
+            <!--<div data-ng-repeat="t in tasks">-->
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                        Collapsible Group 1</a>
+                    </h4>
+                    </div>
+                    <div id="collapse1" class="panel-collapse collapse in">
+                    <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                    minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                    commodo consequat.</div>
+                    </div>
+                </div>
+            </div>              
+            <!--<div>
+                <h3><%=t.title=></h3>
+                <div>esta es una prueba</div>
+            </div>-->
+            
+            <!--<table>
+                <tr>
+                    <td>Title</td>
+                    <td>Started At</td>
+                    <td>Completed At</td>
+                    <td>Duration</td>
+                    <td>Project</td>
+                </tr>
+                <tr data-ng-repeat="t in tasks">
+                    <td><%=t.title=></td>
+                    <td><%=t.startTime=></td>
+                    <td><%=t.endTime=></td>
+                    <td><%=t.duration=></td>
+                    <td><%=t.project_id=></td>        
+                </tr>
+            </table>            -->
+        </div>
+    </div>
+</div>

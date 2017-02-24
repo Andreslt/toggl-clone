@@ -3,6 +3,7 @@ var router = express.Router();
 var passport = require('passport');
 
 //Database
+var User = require('../db/schemas').user;
 var Task = require('../db/schemas').task;
 var Project = require('../db/schemas').project;
 
@@ -12,19 +13,33 @@ var Project = require('../db/schemas').project;
     });
 
     router.get('/dashboard', isLoggedIn, (req, res) => {
-        console.log('user: '+req.user);
-
         res.sendfile('app/client/public/html/index.html');
     });
 
     router.get('/login', (req, res) => {
-        console.log('Get LOG IN');
-        res.send('NOT LOGGED YET');
+        res.sendfile('app/client/public/html/login.html')
     });
+
+    router.get('/projects', (req, res) => {
+        //res.sendfile('app/client/public/html/login.html')
+    });
+
+    router.get('/profile', (req, res) => {
+        
+    });        
 
     router.get('/logout', function (req, res) {
         req.logout();
-        res.redirect('/');
+        req.session.destroy(function (err) {
+            if(err) console.log(err);
+            res.redirect('/login');
+        });        
+    });
+//<<
+
+//User >>
+    router.get('/api/user', isLoggedIn, (req, res) => {
+            res.json(req.user);
     });
 //<<
 
@@ -32,13 +47,14 @@ var Project = require('../db/schemas').project;
     router.get('/api/tasks', isLoggedIn, (req, res) => {
         Task.find({}, (err, tasks)=>{
             res.json(tasks);
-        });        
+        });
     });
 
     router.post('/api/tasks/new', isLoggedIn,(req, res) => {
         var task = new Task();
-            task.title = req.title;
-            task.save();            
+            task.title = req.body.title;
+            task.user_id = req.user._id;
+            task.save();
         res.sendStatus(200);
     });
 
@@ -52,16 +68,21 @@ var Project = require('../db/schemas').project;
 //<<
 
 //Projects >>
-    router.get('/project', isLoggedIn, (req, res) => {
+    router.get('/api/projects', isLoggedIn, (req, res) => {
+        Project.find({}, (err, projects)=>{
+            res.json(projects);
+        });  
+    });
+
+    router.post('/api/projects/new', isLoggedIn, (req, res) => {
 
     });
-    router.post('/project/new', isLoggedIn, (req, res) => {
+
+    router.delete('/api/projects/:id', isLoggedIn, (req, res) => {
 
     });
-    router.delete('/project/:id', isLoggedIn, (req, res) => {
 
-    });
-    router.put('/project/:id', isLoggedIn, (req, res) => {
+    router.put('/api/projects/:id', isLoggedIn, (req, res) => {
 
     });
 //<<

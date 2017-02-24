@@ -3,24 +3,24 @@ var ObjectId = mongoose.Schema.ObjectId;
 var bcrypt = require('bcrypt-nodejs');
 
 var taskSchema = new mongoose.Schema({
-    title: String,
-    startTime: {
-        type: Date,
-        default: Date.now,
-        required: true
-    },
-    endTime: Date,
+    title: String,    
     duration: Number,
     project_id:{
         type: ObjectId,
         ref: "Project",
     },
+    user_id: {
+        type: ObjectId,
+        ref: "User",
+        required: true
+    },
     completed: {
         type: Boolean,
         default: false,
         required: true
-    }
-}, { timestamps: true });
+    },
+    finishedAt: Date
+}, { timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } });
 
 var projectSchema = new mongoose.Schema({
     title: {
@@ -30,6 +30,7 @@ var projectSchema = new mongoose.Schema({
     user_id: {
         type: ObjectId,
         ref: "User",
+        required: true
     }
 });
 
