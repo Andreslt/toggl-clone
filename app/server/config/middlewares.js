@@ -14,6 +14,7 @@ module.exports = (app)=>{
     app.use(bodyParser.json());
     app.use(methodOverride());
     app.use(flash());
+    app.use(allowCrossDomain);    
     app.use(session({
         secret: 'togglClone',
         saveUninitialized: true,
@@ -37,4 +38,11 @@ var sessionMidleware = (req, res, next) => {
   } else {
     next();
   }
+}
+
+var allowCrossDomain = (req, res, next) =>{
+    res.header('Access-Control-Allow-Origin', 'example.com');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
 }

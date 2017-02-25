@@ -18,23 +18,16 @@
             });
         getTasks($http)
             .then((userTasks) => {
-                vm.tasks = userTasks;
-            });
-
-        vm.addTask = ($http) => {
-            console.log('LLegó')
-            return $http.post('/api/tasks/new')
-                .then((response) => {
-                    console.log('task: ' + response);
-                }, (error) => {
-                    console.log('Error >>>: ' + error)
-                })
-        }
+                for(var i=0; i<userTasks.length; i++){                    
+                    userTasks[i].fecha = moment((new Date(userTasks[i].created_at))).fromNow();
+                }
+                vm.task_list = userTasks;
+            });         
     }
 
     function getTasks($http) {
         return $http.get('/api/tasks')
-            .then((response) => {
+            .then((response) => {                
                 return response.data;
             }, (error) => {
                 console.log('Error >>>: ' + error)
@@ -49,5 +42,28 @@
                 console.log('Error >>>: ' + error)
             })
     }
+
+        function formatDate(date) {
+            var monthNames = [
+                "Jan", "Feb", "Mar",
+                "Apr", "May", "Jun", "Jul",
+                "Aug", "Sep", "Oct",
+                "Nov", "Dec"
+            ];
+
+            var day = date.getDate();
+            var monthIndex = date.getMonth();
+            var year = date.getFullYear();
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+
+            return day + '/' + monthNames[monthIndex] + '/' + year + ' ' + correctTime(hours) + ':' + correctTime(minutes)
+        }
+
+        function correctTime(time) {
+            if (time < 10)
+                time = '0' + time
+            return time
+        }
 
 }())

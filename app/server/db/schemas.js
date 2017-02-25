@@ -14,10 +14,10 @@ var taskSchema = new mongoose.Schema({
         ref: "User",
         required: true
     },
-    completed: {
-        type: Boolean,
-        default: false,
-        required: true
+    summary: {
+        started_at: String,
+        finished_at: String,
+        duration: Number
     },
     finishedAt: Date
 }, { timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } });
@@ -39,6 +39,7 @@ var userSchema = new mongoose.Schema({
         id: String,
         token: String,
         displayName: String,
+        photo: String,
         username: String
     }
 });

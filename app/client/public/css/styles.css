@@ -6,6 +6,84 @@
 
 /* Toggle Styles */
 
+#container{
+    height:100px;
+}
+
+
+.timer_button{
+    height:70px;
+    width:120px;
+    float:left;
+    font-size:1.8em;
+}
+
+.settings{
+    margin: 2px 0px
+}
+
+#clock{
+    width: 280px;
+    height: 70px;
+    border: 1px solid #DDD;
+    clear:none;
+    float:left;
+    font-size: 35pt;
+    padding:0px 50px;
+}
+
+.columns{
+    padding-left: 50px;
+}
+
+table {
+    clear:both;
+    margin-bottom: 20px;    
+    width:400px;
+    border:1px solid #DDD;
+}
+
+th {
+    padding: 5px;
+    background-color: #5bc0de;
+}
+
+td {
+    padding: 5px;
+    background-color: #EEE;
+}
+
+.bs-callout{
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #eee;
+    border-image: none;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px 1px 1px 5px;
+    margin-bottom: 5px;
+    padding: 20px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif 
+}
+
+.bs-callout:last-child {
+    margin-bottom: 0px;
+}
+.bs-callout h4 {
+    margin-bottom: 10px;
+    margin-top: 0;
+}
+
+.bs-callout-danger {
+    border-left-color: #5bc0de;
+}
+
+.bs-callout-danger h4{
+    color: #5bc0de;
+}
+
 #wrapper {
     padding-left: 0;
     -webkit-transition: all 0.5s ease;
@@ -95,7 +173,37 @@
     color: #fff;
 }
 
+@media (max-width: 508px) {
+      .timer_button{
+        width:60px;
+        font-size:0.8em;
+        margin-left: 2px;
+    }  
+
+    #clock{
+        width: 210px;
+        padding:0px 20px;
+    }
+
+    .bs-callout.bs-callout-danger{
+        height: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+      .timer_button{
+        width:60px;
+        font-size:0.8em;
+        margin-left: 2px;
+    }  
+
+    .bs-callout.bs-callout-danger{
+        height: 390px;
+    }
+}
+
 @media (min-width: 768px) {
+
     #wrapper {
         padding-left: 250px;
     }

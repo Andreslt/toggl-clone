@@ -3,15 +3,14 @@
 
         .component('dashboard', {
             templateUrl: "../../../html/templates/dashboard.html",
-            controller: ['$http', '$element', dashController],
+            controller: ['$http', dashController],
             controllerAs: 'vm'
         });
 
     function dashController($http, $element) {
         var vm = this;
 
-        vm.check = (value)=>{
-            console.log('LLEGÓ EN: '+value)
+        /*vm.check = (value)=>{
             vm.checked = value;
         }
 
@@ -21,16 +20,15 @@
                 params = {
                     title: $element.find('#task_entry').val()
                 }
-
+                //$timer.timeStart= new Date(); //Starting task chronometer
             $http.post(url, params)
-                .success((data, status) => {
+                .success((data) => {
                     console.log('data: '+data);
-                    console.log('status: '+status);
                     $element.find('#task_entry').val("");
                 })
                 .error((error) => {
                     console.log('Error >>>: ' + error)
                 })
-        }
+        }*/
     }
 }())

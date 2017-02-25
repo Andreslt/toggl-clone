@@ -1,0 +1,51 @@
+<div id="container" class="col-lg-12" ng-init="vm.running = false">
+    <div class="row" style="margin-bottom:5px" ng-show="vm.running == false">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Add a new task" name="task" ng-model="vm.RunningTask" id="task_entry">
+            <div class="input-group-btn">
+                <button class="btn btn-success" ng-click='vm.check(true)'><span class="glyphicon glyphicon-plus-sign"></span></button>
+            </div>
+        </div>
+    </div>
+
+    <div ng-show="vm.running == true">
+        <div class="row">
+        <div class="col-lg-2" align="left"><p style="font-size: 12px"> Running...</p></div><div class="col-lg-7" align="left"><h4> <%= vm.RunningTask =></h4></div>
+        </div>
+        <div class="row" style="margin-bottom:5px">
+            <div class="col-lg-8" style="padding: 0px;">
+                <div id="clock">
+                    <%=vm.timer=>
+                </div>                
+            </div>
+
+            <div class="col-lg-2" style="margin:0">
+                <button class="timer_button" ng-click="vm.toggleTimer()"><%=vm.mode=></button>              
+            </div>  
+        </div> 
+        <div class="row" style="padding-left:70px" ng-show="vm.stopped==true">          
+            <div class="btn-group ">
+            <button type="button" ng-click="vm.addTask()" class="btn btn-info btn-sm">Save</button>
+            <button type="button" ng-click="vm.reset()" class="btn btn-default btn-sm">Reset</button>
+            </div>
+        </div>
+    </div>
+    <!--<div>
+        <table>
+            <thead>
+                <tr>
+                    <th class="columns">Start</th>
+                    <th class="columns">End</th>
+                    <th style="padding-left: 20px">Duration (secs)</th>
+                </tr>
+            </thead>
+            <tbody >
+                <tr>
+                    <td>09/24/14 12:00:00</td>
+                    <td>09/24/14 12:00:01</td>
+                    <td style="padding-left: 60px">1.0</td>
+                </tr>
+            </tbody>
+        </table>
+    <div>-->
+ </div>

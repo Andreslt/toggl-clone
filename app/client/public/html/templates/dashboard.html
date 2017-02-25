@@ -14,14 +14,14 @@
             <ul class="nav navbar-nav navbar-right">                
             </ul>
 
-            <div class="navbar-form navbar-right">
+            <!--<div class="navbar-form navbar-right">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Add a new task" name="task" id="task_entry">
                     <div class="input-group-btn">
                         <button class="btn btn-success" ng-click='vm.addTask(); vm.check(true)'><span class="glyphicon glyphicon-plus-sign"></span></button>
                     </div>
                 </div>
-            </div>
+            </div>-->
         </div>
     </div>
 </nav>
@@ -33,7 +33,6 @@
             <ul class="sidebar-nav">
                 <li class="sidebar-brand"><br></li>
                 <li class="sidebar-brand"><a href="/dashboard" class="navbar-brand"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Dashboard</a></li>
-                <li><a href="/profile"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Profile</a></li>
                 <li><a href="/projects"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Projects</a></li>                
                 <li><a href="/logout"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> Logout</a></li>
             </ul>
@@ -45,7 +44,7 @@
             <br>
                 <div ng-show="vm.checked" class="alert alert-success alert-dismissable">
                     <a href="#" ng-click='vm.check(false)' class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                    Task created succesfully!
+                    Task saved succesfully!
                 </div>      
             <tasks></tasks>
         </div>
