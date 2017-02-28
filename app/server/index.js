@@ -1,6 +1,9 @@
 var express = require('express');
 var passport = require('passport');
 
+// Config Environment
+require('./config/config')();
+
 // Connecting db && routes
 require('./db/config')();
 var routes = require('./config/routes');
