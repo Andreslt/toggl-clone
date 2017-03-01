@@ -18,21 +18,28 @@
             });
         getTasks($http)
             .then((userTasks) => {
-                for(var i=0; i<userTasks.length; i++){                    
+                for (var i = 0; i < userTasks.length; i++) {
                     userTasks[i].fecha = moment((new Date(userTasks[i].created_at))).fromNow();
                 }
                 vm.task_list = userTasks;
-            });         
+            });
     }
 
     function getTasks($http) {
         return $http.get('/api/tasks')
-            .then((response) => {                
+            .then((response) => {
                 return response.data;
             }, (error) => {
                 console.log('Error >>>: ' + error)
             })
     }
+
+    function deleteTask($http) {
+        return $http.delete('/api/tasks/:id')
+            .then((response) => {
+                return response.data
+            });
+    };
 
     function getUser($http) {
         return $http.get('/api/user')
@@ -43,27 +50,27 @@
             })
     }
 
-        function formatDate(date) {
-            var monthNames = [
-                "Jan", "Feb", "Mar",
-                "Apr", "May", "Jun", "Jul",
-                "Aug", "Sep", "Oct",
-                "Nov", "Dec"
-            ];
+    function formatDate(date) {
+        var monthNames = [
+            "Jan", "Feb", "Mar",
+            "Apr", "May", "Jun", "Jul",
+            "Aug", "Sep", "Oct",
+            "Nov", "Dec"
+        ];
 
-            var day = date.getDate();
-            var monthIndex = date.getMonth();
-            var year = date.getFullYear();
-            var hours = date.getHours();
-            var minutes = date.getMinutes();
+        var day = date.getDate();
+        var monthIndex = date.getMonth();
+        var year = date.getFullYear();
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
 
-            return day + '/' + monthNames[monthIndex] + '/' + year + ' ' + correctTime(hours) + ':' + correctTime(minutes)
-        }
+        return day + '/' + monthNames[monthIndex] + '/' + year + ' ' + correctTime(hours) + ':' + correctTime(minutes)
+    }
 
-        function correctTime(time) {
-            if (time < 10)
-                time = '0' + time
-            return time
-        }
+    function correctTime(time) {
+        if (time < 10)
+            time = '0' + time
+        return time
+    }
 
 }())

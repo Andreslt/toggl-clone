@@ -9,6 +9,7 @@ var Project = require('../db/schemas').project;
 
 //dashboard & Login >>
     router.get('/', isLoggedIn, (req, res) => {
+        console.log('dashboard reached!')
         res.redirect('/dashboard');
     });
 
@@ -21,7 +22,7 @@ var Project = require('../db/schemas').project;
     });
 
     router.get('/projects', isLoggedIn, (req, res) => {
-        res.sendfile('app/client/public/html/index.html')
+        res.sendfile('app/client/public/html/projects.html')
     });
 
     router.get('/logout', function (req, res) {
@@ -48,7 +49,7 @@ var Project = require('../db/schemas').project;
 
     router.post('/api/tasks/new', isLoggedIn,(req, res) => {
         var task = new Task();
-        console.log('summary: '+JSON.stringify(req.body.summary));
+        // console.log('summary: '+JSON.stringify(req.body.summary));
             task.title = req.body.title;
             task.user_id = req.user._id;
             task.summary = req.body.summary;
@@ -57,7 +58,9 @@ var Project = require('../db/schemas').project;
     });
 
     router.delete('/api/tasks/:id', isLoggedIn, (req, res) => {
-
+        Task.findOneAndRemove({_id: req.params.id}, (result, err)=>{
+            console.log('result: '+result);
+        })
     });
 
     router.put('/api/tasks/:id', isLoggedIn, (req, res) => {
@@ -73,7 +76,10 @@ var Project = require('../db/schemas').project;
     });
 
     router.post('/api/projects/new', isLoggedIn, (req, res) => {
-
+        Project.save({
+            title: req.body.title,
+            user_id: req.user            
+        });
     });
 
     router.delete('/api/projects/:id', isLoggedIn, (req, res) => {

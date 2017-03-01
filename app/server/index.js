@@ -1,6 +1,3 @@
-var express = require('express');
-var passport = require('passport');
-
 // Config Environment
 require('./config/config')();
 
@@ -9,6 +6,8 @@ require('./db/config')();
 var routes = require('./config/routes');
 
 // Initializing app
+var express = require('express');
+var passport = require('passport');
 var app = express();
 
 // Setting up Passport

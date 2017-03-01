@@ -7,7 +7,6 @@
             controllerAs: 'vm',
         });
 
-
     function timerController($timeout, $http, $element, $window) {
         var vm = this;
         var timeSchedule = {
@@ -39,7 +38,7 @@
             }
         }
 
-        vm.reset = () =>{
+        vm.reset = () => {
             $window.location.reload();
         }
 
@@ -119,7 +118,7 @@
             if (time < 10)
                 time = '0' + time
             return time
-        }        
+        }
 
     }
 }())

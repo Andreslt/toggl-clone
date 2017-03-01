@@ -32,7 +32,7 @@ var projectSchema = new mongoose.Schema({
         ref: "User",
         required: true
     }
-});
+}, { timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } });
 
 var userSchema = new mongoose.Schema({
     twitter: {

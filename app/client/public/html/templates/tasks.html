@@ -5,6 +5,7 @@
                 <img style="border-radius: 20%; height: 128px; width: 128px" src="<%= vm.user.twitter.photo=>" alt="twitter_pic">
             </div>
             <div class="col-lg-4 col-md-4">
+                <div ng-view></div>
                 <h1 style="padding-left: 50px">
                     <%= vm.user.twitter.displayName=> </h1><h6 style="padding-left: 50px">@<%= vm.user.twitter.username=></h6>
             </div>
@@ -45,6 +46,9 @@
                                         </select>
                                         </div>                                           
                                         <div class="row">
+                                            <div class="col-sm-offset-10">
+                                                <button type="button" class="btn btn-default"> Save</button>
+                                            </div>                                            
                                             <div class="col-sm-offset-11">
                                                 <button type="button" class="btn btn-primary"> Save</button>
                                             </div>
